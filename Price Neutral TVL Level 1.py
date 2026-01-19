@@ -36,16 +36,12 @@ def round_to_4sig_int(x):
 
 df['price_neutral_tvl_4sig'] = df['price_neutral_tvl'].apply(round_to_4sig_int)
 
-# ========= 6. 计算每日变化率 =========
-df['pntvl_change'] = df['price_neutral_tvl_4sig'].pct_change()
-df['eth_return'] = df['eth_price'].pct_change()
-
 # ========= 打印全部内容 =========
 # 显示所有行和列
-pd.set_option('display.max_rows', None)
+pd.set_option('display.max_rows', 20)   # 总共最多显示 20 行
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 1000)
 pd.set_option('display.max_colwidth', None)
-pd.set_option('display.float_format', '{:.4f}'.format)  # 可选：格式化浮点数
+pd.set_option('display.float_format', '{:.4f}'.format)
 
 print(df)
