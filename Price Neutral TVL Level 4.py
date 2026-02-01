@@ -8,8 +8,8 @@ pio.renderers.default = "browser"
 # =========================================================
 # 1. 读取数据
 # =========================================================
-tvl_path = "ethereum_tvl_2023-01-01_2025-01-01.csv"
-price_path = "kline_ETHUSDT_D_20230101_20250101.csv"
+tvl_path = "ethereum_tvl_2022-01-01_2025-01-01.csv"
+price_path = "kline_ETHUSDT_D_20220101_20250101.csv"
 
 tvl_df = pd.read_csv(tvl_path)
 price_df = pd.read_csv(price_path)
