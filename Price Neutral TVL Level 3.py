@@ -8,8 +8,8 @@ pio.renderers.default = "browser"
 # =========================================================
 # 1. 读取数据
 # =========================================================
-tvl_path = "ethereum_tvl_2025-01-01_2026-01-01.csv"
-price_path = "kline_ETHUSDT_D_20250101_20260101.csv"
+tvl_path = "ethereum_tvl_2022-01-01_2025-01-01.csv"
+price_path = "kline_ETHUSDT_D_20220101_20250101.csv"
 
 tvl_df = pd.read_csv(tvl_path)
 price_df = pd.read_csv(price_path)
@@ -38,7 +38,7 @@ df['divergence_strength'] = df['eth_return'] - df['pntvl_change']
 # =========================================================
 # 4. ⭐ 滑动窗口 Z-score（核心升级）
 # =========================================================
-window = 60  # 推荐 30 / 60 / 90 你可以回测比较
+window = 75  # 推荐 30 / 60 / 90 你可以回测比较
 
 df['div_mean'] = df['divergence_strength'].rolling(window).mean()
 df['div_std'] = df['divergence_strength'].rolling(window).std()
@@ -50,7 +50,7 @@ df['divergence_z'] = (
 # =========================================================
 # 5. ⭐ 信号生成（基于 Z-score）
 # =========================================================
-z_threshold = 1.0  # ⭐ 推荐从 1.2 开始
+z_threshold = 1.1  # ⭐ 推荐从 1.2 开始
 
 df['signal'] = 0
 
@@ -125,7 +125,7 @@ print(df[['date','eth_price','price_neutral_tvl_2dec',
           'divergence_strength','divergence_z',
           'signal','position']])
 
-print("\n========== Strategy Performance ==========")
+print("\n========== Strategy Performance Level 3 ==========")
 print(f"Annual Return    : {annual_return:.2%}")
 print(f"Sharpe Ratio     : {sharpe_ratio:.2f}")
 print(f"Calmar Ratio     : {calmar_ratio:.2f}")
